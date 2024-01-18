@@ -21,7 +21,7 @@ def text_to_sequence(text, symbols, cleaner_names):
   clean_text = _clean_text(text, cleaner_names)
   print(clean_text)
   print(f" length:{len(clean_text)}")
-  for symbol in clean_text:
+  for symbol in clean_text.split():
     if symbol not in symbol_to_id.keys():
       continue
     symbol_id = symbol_to_id[symbol]
@@ -38,7 +38,7 @@ def cleaned_text_to_sequence(cleaned_text, symbols):
       List of integers corresponding to the symbols in the text
   '''
   symbol_to_id = {s: i for i, s in enumerate(symbols)}
-  sequence = [symbol_to_id[symbol] for symbol in cleaned_text if symbol in symbol_to_id.keys()]
+  sequence = [symbol_to_id[symbol] for symbol in cleaned_text.split() if symbol in symbol_to_id.keys()]
   return sequence
 
 

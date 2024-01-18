@@ -5,6 +5,7 @@ from text.mandarin import number_to_chinese, chinese_to_bopomofo, latin_to_bopom
 from text.sanskrit import devanagari_to_ipa
 from text.english import english_to_lazy_ipa, english_to_ipa2, english_to_lazy_ipa2
 from text.thai import num_to_thai, latin_to_thai
+from text.pinyin import chinese_to_phonemes
 # from text.shanghainese import shanghainese_to_ipa
 # from text.cantonese import cantonese_to_ipa
 # from text.ngu_dialect import ngu_dialect_to_ipa
@@ -32,10 +33,13 @@ def korean_cleaners(text):
 def chinese_cleaners(text):
     '''Pipeline for Chinese text'''
     text = text.replace("[ZH]", "")
-    text = number_to_chinese(text)
-    text = chinese_to_bopomofo(text)
-    text = latin_to_bopomofo(text)
+    # text = number_to_chinese(text)
+    # text = chinese_to_bopomofo(text)
+    # text = latin_to_bopomofo(text)
+    text = chinese_to_phonemes(text)
+    print(text)
     text = re.sub(r'([ˉˊˇˋ˙])$', r'\1。', text)
+    print(text)
     return text
 
 
